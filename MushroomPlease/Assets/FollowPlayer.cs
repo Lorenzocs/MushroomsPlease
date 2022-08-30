@@ -9,7 +9,7 @@ public class FollowPlayer : MonoBehaviour
     public Vector3 offset;
 
 
-    void Update()//4frames 
+    void FixedUpdate()//4frames 
     {
         Vector3 posicionACopiar = player.position + offset;
         Vector3 posicionSuavizada = Vector3.Lerp(transform.position, posicionACopiar, velocidadSuavizada);

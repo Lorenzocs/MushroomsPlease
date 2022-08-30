@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private PlayerView playerView;
     private int direction;
+    public bool iHaveHoe;
+
     public void Movement(float horizontalMovement, float verticalMovement)
     {
         bool isWalking = false;
