@@ -6,18 +6,26 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Player player;
 
-    void Start()
+
+
+    public void Update()
     {
-
+        if (!player.canMove) return;
+        
+            if (Input.GetMouseButtonDown(0)&&player.iHaveHoe)
+            {
+                player.HoeHit();
+            }
+        
     }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
-        float horizontalMovement = Input.GetAxisRaw("Horizontal");
-        float verticalMovement = Input.GetAxisRaw("Vertical");
-        player.Movement(horizontalMovement, verticalMovement);
-
+        if (!player.canMove) return;
+        
+            float horizontalMovement = Input.GetAxisRaw("Horizontal");
+            float verticalMovement = Input.GetAxisRaw("Vertical");
+            player.Movement(horizontalMovement, verticalMovement);
     }
-    
+
+
 }

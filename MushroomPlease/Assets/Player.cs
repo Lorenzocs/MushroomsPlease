@@ -5,9 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float speed;
+
     [SerializeField] private PlayerView playerView;
     private int direction;
-    public bool iHaveHoe;
+    public bool iHaveHoe, canMove;
+    [SerializeField] private GameObject hitBox;
+    public int amountOfMushrooms;
 
     public void Movement(float horizontalMovement, float verticalMovement)
     {
@@ -44,5 +47,11 @@ public class Player : MonoBehaviour
         }
         playerView.UpdateAnimator(isWalking, direction);
        
+    }
+    public void HoeHit()
+    {
+        playerView.HitHoe();
+      GameObject box=  Instantiate(hitBox, transform.position, transform.rotation);
+        Destroy(box, 0.1f);
     }
 }

@@ -11,6 +11,7 @@ public class UiController : MonoBehaviour
     [SerializeField] private CanvasGroup myCanvasGroup;
     [SerializeField] private GameObject panelText;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private Player player;
     // Start is called before the first frame update
     public void Awake()
     {
@@ -30,15 +31,19 @@ public class UiController : MonoBehaviour
         DoFadeOff();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void DoFadeOff()
     {
         myCanvasGroup.DOFade(0, 2f);
-        myImage.DOColor(Color.white,2f);
+        myImage.DOColor(Color.white,2f).OnComplete(PlayerCanMove);
+    }
+    public void DoFadeOffSleep()
+    {
+        myCanvasGroup.DOFade(0, 2f).SetDelay(1f);
+        myImage.DOColor(Color.white, 2f).SetDelay(1f).OnComplete(PlayerCanMove);
+    }
+    public void PlayerCanMove()
+    {
+        player.canMove = true;
     }
     public void DoFadeOn()
     {
@@ -61,5 +66,13 @@ public class UiController : MonoBehaviour
     {
 
         ChangeText("Press E to interact");
+    }
+
+    public void SleepTransition()
+    {
+        player.canMove = false;
+        myCanvasGroup.DOFade(1, 2f);
+        myImage.DOColor(new Color32(44, 44, 44, 255), 2f).OnComplete(DoFadeOffSleep);
+
     }
 }

@@ -7,6 +7,10 @@ public class NpcController : MonoBehaviour
     [TextArea][SerializeField] private List<string> Dialogue;
     private int index;
     private bool inContactWithPlayer;
+    private bool iHaveTheMushrooms;
+    public int mushroomsRequired;
+
+    private Player player;
 
 
     public void Update()
@@ -15,16 +19,62 @@ public class NpcController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-               
-              
-                if(index >= Dialogue.Count)
+
+                if (!GameManager.Instance.missionOfTheDay)
                 {
-                    index = 0;
-                    UiController.Instance.ResetDialogue();
-                    return;
+
+                    if (index >= Dialogue.Count)
+                    {
+                        index = 0;
+                        UiController.Instance.ResetDialogue();
+                        GameManager.Instance.missionOfTheDay = true;
+                        return;
+                    }
+                    UiController.Instance.ChangeText(Dialogue[index]);
+                    index++;
                 }
-                UiController.Instance.ChangeText(Dialogue[index]);
-                index++;
+                else
+                {
+                 
+                    for (int i = 0; i < GameManager.Instance.items.Count; i++)
+                    {
+                        if (GameManager.Instance.items[i].name == "Mushroom" && !iHaveTheMushrooms)
+                        {
+                            int aux = GameManager.Instance.itemAmount[i] - mushroomsRequired;
+                            if (aux <= 0)
+                            {
+                                aux = 0;
+                            }
+                            mushroomsRequired -= GameManager.Instance.itemAmount[i];
+                            if (mushroomsRequired <= 0)
+                            {
+                                mushroomsRequired = 0;
+                            }
+
+                            GameManager.Instance.itemAmount[i] = aux;
+                            if (aux <= 0)
+                            {
+
+                                GameManager.Instance.items.Remove(GameManager.Instance.items[i]);
+                                GameManager.Instance.itemAmount.Remove(GameManager.Instance.itemAmount[i]);
+                            }
+                            GameManager.Instance.DisplayItems();
+                            if (mushroomsRequired <= 0)
+                            {
+                                iHaveTheMushrooms = true;
+                            }
+
+                        }
+                    }
+                        if (iHaveTheMushrooms)
+                        {
+                            UiController.Instance.ChangeText("Thank you! You can sleep, see you tomorrow.");
+                        }
+                        else
+                        {
+                            UiController.Instance.ChangeText("I need " + mushroomsRequired + " mushroom more!");
+                        }
+                }
 
             }
         }
@@ -46,5 +96,5 @@ public class NpcController : MonoBehaviour
             UiController.Instance.ResetDialogue();
         }
     }
-    
+
 }

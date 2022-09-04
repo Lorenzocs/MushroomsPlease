@@ -11,5 +11,12 @@ public class PlayerView : MonoBehaviour
         myAnimator.SetBool("Walk", isWalking);
         myAnimator.SetFloat("Direction", direction);
     }
+    public void HitHoe()
+    {
+     
+        myAnimator.SetTrigger("HoeHit");
+  
+    }
+  
    
 }

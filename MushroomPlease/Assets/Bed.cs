@@ -1,44 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-public class Hoe : MonoBehaviour
+
+public class Bed : MonoBehaviour
 {
     private bool inConctactWithPlayer;
-    [SerializeField] private Item item;
-
-    public void Start()
-    {
-        DOTween.Init();
-        Enlarge();
-    }
     public void Update()
     {
         if (inConctactWithPlayer && Input.GetKeyDown(KeyCode.E))
         {
-            GameManager.Instance.AddItem(item,1);
-            Destroy(gameObject);
+            UiController.Instance.DisableText();
+            UiController.Instance.SleepTransition();
+            GameManager.Instance.missionOfTheDay = false;
         }
-    }
-    void Enlarge()
-    {
-        transform.DOScale(1f, 0.5f).SetEase(Ease.Linear).OnComplete(Shrink);
-    }
-    void Shrink()
-    {
-        transform.DOScale(0.7f, 0.5f).SetEase(Ease.Linear).OnComplete(Enlarge);
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             inConctactWithPlayer = true;
-            Player p = collision.GetComponent<Player>();
-            if (p != null)
-            {
-                p.iHaveHoe = true;
-
-            }
+            UiController.Instance.ResetDialogue();
             UiController.Instance.ActiveText();
         }
     }
