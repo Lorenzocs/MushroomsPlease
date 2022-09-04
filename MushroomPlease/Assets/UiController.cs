@@ -38,11 +38,14 @@ public class UiController : MonoBehaviour
     }
     public void DoFadeOffSleep()
     {
+       
         myCanvasGroup.DOFade(0, 2f).SetDelay(1f);
+        GameManager.Instance.NextDay();
         myImage.DOColor(Color.white, 2f).SetDelay(1f).OnComplete(PlayerCanMove);
     }
     public void PlayerCanMove()
     {
+
         player.canMove = true;
     }
     public void DoFadeOn()

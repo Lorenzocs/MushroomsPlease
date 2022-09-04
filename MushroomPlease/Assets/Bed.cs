@@ -11,7 +11,7 @@ public class Bed : MonoBehaviour
         {
             UiController.Instance.DisableText();
             UiController.Instance.SleepTransition();
-            GameManager.Instance.missionOfTheDay = false;
+           
         }
     }
     public void OnTriggerEnter2D(Collider2D collision)

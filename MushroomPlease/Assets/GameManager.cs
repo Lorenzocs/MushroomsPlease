@@ -14,10 +14,10 @@ public class GameManager : MonoBehaviour
     public List<int> itemAmount = new List<int>();
     public GameObject[] slots;
     public List<GameObject> mushroomsInScene= new List<GameObject>();
-
+    [SerializeField] private NpcController npc;
     public int dayNumber;
     public int coins;
-    public bool missionOfTheDay;
+    
 
     public static GameManager Instance;
 
@@ -34,6 +34,13 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        if(mushroomsInScene.Count != 0)
+        {
+            foreach (var item in mushroomsInScene)
+            {
+                Destroy(item);
+            }
+        }
         mushroomsInScene.Clear();
         for (int i = 0; i < amountOfMushrooms; i++)
         {
@@ -63,11 +70,18 @@ public class GameManager : MonoBehaviour
             slots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().color = Color.white;
             slots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = itemAmount[i].ToString();
 
-
+            slots[i].GetComponent<ItemSlot>().myItem = items[i];
 
         }
     }
 
+    public void NextDay()
+    {
+        Start();
+        npc.iHaveTheMushrooms = false;
+        npc.myMission = false;
+        npc.mushroomsRequired = 5;
+    }
     public void AddItem(Item _item,int amount)
     {
         if (!items.Contains(_item))

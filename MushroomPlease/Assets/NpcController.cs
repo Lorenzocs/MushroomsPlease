@@ -7,7 +7,7 @@ public class NpcController : MonoBehaviour
     [TextArea][SerializeField] private List<string> Dialogue;
     private int index;
     private bool inContactWithPlayer;
-    private bool iHaveTheMushrooms;
+    public bool iHaveTheMushrooms,myMission;
     public int mushroomsRequired;
 
     private Player player;
@@ -20,14 +20,14 @@ public class NpcController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
 
-                if (!GameManager.Instance.missionOfTheDay)
+                if (!myMission)
                 {
 
                     if (index >= Dialogue.Count)
                     {
                         index = 0;
                         UiController.Instance.ResetDialogue();
-                        GameManager.Instance.missionOfTheDay = true;
+                        myMission = true;
                         return;
                     }
                     UiController.Instance.ChangeText(Dialogue[index]);
@@ -62,6 +62,7 @@ public class NpcController : MonoBehaviour
                             if (mushroomsRequired <= 0)
                             {
                                 iHaveTheMushrooms = true;
+                                GameManager.Instance.coins += 100;
                             }
 
                         }

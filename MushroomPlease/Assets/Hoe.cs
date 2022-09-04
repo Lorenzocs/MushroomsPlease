@@ -17,6 +17,7 @@ public class Hoe : MonoBehaviour
         if (inConctactWithPlayer && Input.GetKeyDown(KeyCode.E))
         {
             GameManager.Instance.AddItem(item,1);
+            InventorySystem.Instance.UpdateTheInventory(InventorySystem.Instance.index);
             Destroy(gameObject);
         }
     }
@@ -34,11 +35,11 @@ public class Hoe : MonoBehaviour
         {
             inConctactWithPlayer = true;
             Player p = collision.GetComponent<Player>();
-            if (p != null)
+           /* if (p != null)
             {
                 p.iHaveHoe = true;
 
-            }
+            }*/
             UiController.Instance.ActiveText();
         }
     }
