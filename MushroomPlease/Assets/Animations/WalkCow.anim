@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle NPC
+  m_Name: WalkCow
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,9 +20,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 2373261413435304668, guid: 3ef6e7b4bd117be4ab38c6973afc8e0a, type: 3}
+      value: {fileID: 8911921523293518287, guid: 59bef413c4ba7cd4797a4ed0b6b9e48a, type: 3}
     - time: 0.083333336
-      value: {fileID: -7099467855655197702, guid: 3ef6e7b4bd117be4ab38c6973afc8e0a, type: 3}
+      value: {fileID: -2414581210190814732, guid: 59bef413c4ba7cd4797a4ed0b6b9e48a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -42,8 +42,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 2373261413435304668, guid: 3ef6e7b4bd117be4ab38c6973afc8e0a, type: 3}
-    - {fileID: -7099467855655197702, guid: 3ef6e7b4bd117be4ab38c6973afc8e0a, type: 3}
+    - {fileID: 8911921523293518287, guid: 59bef413c4ba7cd4797a4ed0b6b9e48a, type: 3}
+    - {fileID: -2414581210190814732, guid: 59bef413c4ba7cd4797a4ed0b6b9e48a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

@@ -12,7 +12,7 @@ public class UiController : MonoBehaviour
     [SerializeField] private GameObject panelText;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private Player player;
-    // Start is called before the first frame update
+    [SerializeField] private TextMeshProUGUI coinsText, dayText;
     public void Awake()
     {
         if (Instance != null && Instance != this)
@@ -34,11 +34,11 @@ public class UiController : MonoBehaviour
     public void DoFadeOff()
     {
         myCanvasGroup.DOFade(0, 2f);
-        myImage.DOColor(Color.white,2f).OnComplete(PlayerCanMove);
+        myImage.DOColor(Color.white, 2f).OnComplete(PlayerCanMove);
     }
     public void DoFadeOffSleep()
     {
-       
+
         myCanvasGroup.DOFade(0, 2f).SetDelay(1f);
         GameManager.Instance.NextDay();
         myImage.DOColor(Color.white, 2f).SetDelay(1f).OnComplete(PlayerCanMove);
@@ -51,7 +51,7 @@ public class UiController : MonoBehaviour
     public void DoFadeOn()
     {
         myCanvasGroup.DOFade(1, 2f);
-        myImage.DOColor(new Color32(44,44,44,255), 2f);
+        myImage.DOColor(new Color32(44, 44, 44, 255), 2f);
     }
     public void ActiveText()
     {
@@ -77,5 +77,13 @@ public class UiController : MonoBehaviour
         myCanvasGroup.DOFade(1, 2f);
         myImage.DOColor(new Color32(44, 44, 44, 255), 2f).OnComplete(DoFadeOffSleep);
 
+    }
+    public void UpdateCoinText(int coin)
+    {
+        coinsText.text = "Coins: " + coin;
+    }
+    public void UpdateDayText(int day)
+    {
+        dayText.text = "Day: " + day;
     }
 }

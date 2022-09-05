@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        dayNumber = 1;
         if(mushroomsInScene.Count != 0)
         {
             foreach (var item in mushroomsInScene)
@@ -81,6 +82,10 @@ public class GameManager : MonoBehaviour
         npc.iHaveTheMushrooms = false;
         npc.myMission = false;
         npc.mushroomsRequired = 5;
+        dayNumber++;
+        UiController.Instance.UpdateDayText(dayNumber);
+       
+
     }
     public void AddItem(Item _item,int amount)
     {

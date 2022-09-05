@@ -63,6 +63,7 @@ public class NpcController : MonoBehaviour
                             {
                                 iHaveTheMushrooms = true;
                                 GameManager.Instance.coins += 100;
+                                UiController.Instance.UpdateCoinText(GameManager.Instance.coins);
                             }
 
                         }
