@@ -6,13 +6,13 @@ using UnityEngine.UI;
 using TMPro;
 public class UiController : MonoBehaviour
 {
-    public static UiController Instance { get; private set; }
-    [SerializeField] private Image myImage;
-    [SerializeField] private CanvasGroup myCanvasGroup;
-    [SerializeField] private GameObject panelText;
-    [SerializeField] private TextMeshProUGUI dialogueText;
+    public static UiController Instance { get; private set; }// A UiController instance for easy access from other scripts
+    [SerializeField] private Image myImage;//to change colour in the sleep transition
+    [SerializeField] private CanvasGroup myCanvasGroup;//for fade away in the sleep transition
+    [SerializeField] private GameObject panelText; // this is a dialogue text panel container   
+    [SerializeField] private TextMeshProUGUI dialogueText;// this is the dialogue text
     [SerializeField] private Player player;
-    [SerializeField] private TextMeshProUGUI coinsText, dayText;
+    [SerializeField] private TextMeshProUGUI coinsText, dayText; // text of coins and days
     public void Awake()
     {
         if (Instance != null && Instance != this)
@@ -26,7 +26,7 @@ public class UiController : MonoBehaviour
     }
     void Start()
     {
-        DOTween.Init();
+        DOTween.Init(); 
         DisableText();
         DoFadeOff();
     }
@@ -45,7 +45,6 @@ public class UiController : MonoBehaviour
     }
     public void PlayerCanMove()
     {
-
         player.canMove = true;
     }
     public void DoFadeOn()

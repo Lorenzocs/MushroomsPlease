@@ -6,12 +6,12 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] mushroomsRed;
-    [SerializeField] private float minXToSpawn, maxXToSpawn, minYToSpawn, maxYToSpawn;
-    [SerializeField] private int amountOfMushrooms;
-    [SerializeField] private Transform containerMushrooms;
-    public List<Item> items = new List<Item>();
-    public List<int> itemAmount = new List<int>();
+    [SerializeField] private GameObject[] mushroomsRed;//type of mushrooms
+    [SerializeField] private float minXToSpawn, maxXToSpawn, minYToSpawn, maxYToSpawn;//to determine the spawning of the area
+    [SerializeField] private int amountOfMushrooms;//number of mushrooms to appear
+    [SerializeField] private Transform containerMushrooms;//to store them 
+    public List<Item> items = new List<Item>();//to store items in inventory
+    public List<int> itemAmount = new List<int>(); //to find out how many items of one type there are
     public GameObject[] slots;
     public List<GameObject> mushroomsInScene= new List<GameObject>();
     [SerializeField] private NpcController npc;
@@ -37,13 +37,13 @@ public class GameManager : MonoBehaviour
         dayNumber = 1;
         if(mushroomsInScene.Count != 0)
         {
-            foreach (var item in mushroomsInScene)
+            foreach (var item in mushroomsInScene)//to create new mushrooms and remove old ones
             {
                 Destroy(item);
             }
         }
         mushroomsInScene.Clear();
-        for (int i = 0; i < amountOfMushrooms; i++)
+        for (int i = 0; i < amountOfMushrooms; i++)//creating new mushrooms
         {
             int randomNum = Random.Range(0, mushroomsRed.Length);
             Vector3 randomPosition = new Vector3(Random.Range(minXToSpawn, maxXToSpawn), Random.Range(minYToSpawn, maxYToSpawn), 0);
@@ -55,15 +55,12 @@ public class GameManager : MonoBehaviour
 
     public void DisplayItems()
     {
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slots.Length; i++)//resetting the slots
         {
             slots[i].transform.GetChild(0).GetComponent<Image>().color = new Color32 (1,1,1,0);
-
-
-           
             slots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = " ";
         }
-        for (int i = 0; i < items.Count; i++)
+        for (int i = 0; i < items.Count; i++)//I assign to slots, image and quantity of an article type if necessary.
         {
             slots[i].transform.GetChild(0).GetComponent<Image>().color = Color.white;
             slots[i].transform.GetChild(0).GetComponent<Image>().sprite = items[i].itemSprite;
@@ -76,7 +73,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void NextDay()
+    public void NextDay()//reset initial values and increase the day by one.
     {
         Start();
         npc.iHaveTheMushrooms = false;
@@ -84,12 +81,10 @@ public class GameManager : MonoBehaviour
         npc.mushroomsRequired = 5;
         dayNumber++;
         UiController.Instance.UpdateDayText(dayNumber);
-       
-
     }
-    public void AddItem(Item _item,int amount)
+    public void AddItem(Item _item,int amount)//to add an item to the inventory
     {
-        if (!items.Contains(_item))
+        if (!items.Contains(_item))//if it does not exist, I create the item and assign the quantity to it
         {
             items.Add(_item);
             itemAmount.Add(amount);
@@ -97,7 +92,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < items.Count; i++)//if the item exists I only modify the quantity 
             {
                 if (items[i]== _item)
                 {
@@ -108,7 +103,7 @@ public class GameManager : MonoBehaviour
         DisplayItems();
     }
 
-    public void OnDrawGizmosSelected()
+    public void OnDrawGizmosSelected()//this is to show the maximum and minimum points of the spawn area.
     {
         Gizmos.color = Color.red;
         var posMinX = new Vector3(minXToSpawn, containerMushrooms.position.y);

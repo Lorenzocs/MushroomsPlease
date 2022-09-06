@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class NpcController : MonoBehaviour
 {
-    [TextArea][SerializeField] private List<string> Dialogue;
-    private int index;
-    private bool inContactWithPlayer;
-    public bool iHaveTheMushrooms,myMission;
-    public int mushroomsRequired;
+    [TextArea][SerializeField] private List<string> Dialogue; // here I will keep the npc messages
+    private int index;// this is for know wich messagge I have to show
+    private bool inContactWithPlayer;// for know if the player is in contact
+    public bool iHaveTheMushrooms,myMission; //to find out if I already have the mushrooms it needs , and to know if the mission was given
+    public int mushroomsRequired;// for know how many mushrooms are required
 
     private Player player;
 
@@ -38,7 +38,7 @@ public class NpcController : MonoBehaviour
                  
                     for (int i = 0; i < GameManager.Instance.items.Count; i++)
                     {
-                        if (GameManager.Instance.items[i].name == "Mushroom" && !iHaveTheMushrooms)
+                        if (GameManager.Instance.items[i].name == "Mushroom" && !iHaveTheMushrooms)//I will check my inventory items to see if I have mushrooms.
                         {
                             int aux = GameManager.Instance.itemAmount[i] - mushroomsRequired;
                             if (aux <= 0)
@@ -59,7 +59,7 @@ public class NpcController : MonoBehaviour
                                 GameManager.Instance.itemAmount.Remove(GameManager.Instance.itemAmount[i]);
                             }
                             GameManager.Instance.DisplayItems();
-                            if (mushroomsRequired <= 0)
+                            if (mushroomsRequired <= 0)//if i have all the necessary mushrooms... the mission is complete
                             {
                                 iHaveTheMushrooms = true;
                                 GameManager.Instance.coins += 100;

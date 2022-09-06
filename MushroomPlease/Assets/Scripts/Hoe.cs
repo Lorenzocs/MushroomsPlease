@@ -10,13 +10,13 @@ public class Hoe : MonoBehaviour
     public void Start()
     {
         DOTween.Init();
-        Enlarge();
+        Enlarge(); //for the effect of enlarging and shrinking
     }
     public void Update()
     {
         if (inConctactWithPlayer && Input.GetKeyDown(KeyCode.E))
         {
-            GameManager.Instance.AddItem(item,1);
+            GameManager.Instance.AddItem(item,1);//adding a hoe 
             InventorySystem.Instance.UpdateTheInventory(InventorySystem.Instance.index);
             Destroy(gameObject);
         }
@@ -35,11 +35,6 @@ public class Hoe : MonoBehaviour
         {
             inConctactWithPlayer = true;
             Player p = collision.GetComponent<Player>();
-           /* if (p != null)
-            {
-                p.iHaveHoe = true;
-
-            }*/
             UiController.Instance.ActiveText();
         }
     }

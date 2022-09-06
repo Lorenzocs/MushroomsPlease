@@ -21,12 +21,7 @@ public class InventorySystem : MonoBehaviour
             Instance = this;
         }
     }
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
@@ -57,12 +52,12 @@ public class InventorySystem : MonoBehaviour
         {
             if (i == currentIndex)
             {
-                Slots[i].transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+                Slots[i].transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);//for little feedback 
                 currentSelected = Slots[i].GetComponent<ItemSlot>();
                 if (currentSelected.myItem != null)
                 {
 
-                    if (currentSelected.myItem.name == "Hoe")
+                    if (currentSelected.myItem.name == "Hoe")//this is to know if the player has selected a hoe.
                     {
                         myPlayer.iHaveHoe = true;
                     }

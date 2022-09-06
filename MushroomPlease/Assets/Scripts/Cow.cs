@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cow : MonoBehaviour
 {
-    public float maxX, minX, maxY, minY;
+    public float maxX, minX, maxY, minY;//to determine the area of movement
     public Vector3 positionToMove;
     public float speed;
     public float countWaiting;
@@ -14,8 +14,6 @@ public class Cow : MonoBehaviour
     {
         positionToMove = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (Vector2.Distance(transform.position, positionToMove) > 0.3f)

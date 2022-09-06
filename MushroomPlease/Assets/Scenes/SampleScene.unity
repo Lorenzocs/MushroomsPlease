@@ -5104,7 +5104,6 @@ MonoBehaviour:
   iHaveHoe: 0
   canMove: 0
   hitBox: {fileID: 432907503132019793, guid: aa7c07a411091694fa3863bd59c1feec, type: 3}
-  amountOfMushrooms: 0
 --- !u!95 &170728173
 Animator:
   serializedVersion: 3
@@ -22060,7 +22059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 170728175}
-  velocidadSuavizada: 0.125
+  speedSmoothed: 0.125
   offset: {x: 0, y: 0, z: -10}
 --- !u!20 &519420031
 Camera:

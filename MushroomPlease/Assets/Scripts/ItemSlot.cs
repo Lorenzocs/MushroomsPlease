@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ItemSlot : MonoBehaviour
 {
-    public Item myItem;
+    public Item myItem;//the slots of inventory contain this script 
 }
